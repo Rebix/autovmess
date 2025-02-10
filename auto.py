@@ -1,7 +1,8 @@
 import base64
 import json
+import ssl
 import sys
-import urllib.request
+import requests
 
 
 def modify_vmess_links(filename, new_remark):
@@ -60,7 +61,7 @@ def modify_vmess_links(filename, new_remark):
 def download_file(url, filename):
     """Downloads a file from a URL."""
     try:
-        urllib.request.urlretrieve(url, filename)
+        requests.get(url, filename, verify=False)
         print(f"Downloaded file from {url} to {filename}")
     except Exception as e:
         print(f"Error downloading file from {url}: {e}")
@@ -68,16 +69,20 @@ def download_file(url, filename):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 4:
-        print("Usage: python modify_vmess.py <url> <filename> <new_remark>")
-        print("    <url>: URL to download the vmess links from")
-        print("    <filename>: Local filename to save the downloaded links")
-        print("    <new_remark>: The new remark to set")
-        sys.exit(1)
+    # if len(sys.argv) != 4:
+    #     print("Usage: python modify_vmess.py <url> <filename> <new_remark>")
+    #     print("    <url>: URL to download the vmess links from")
+    #     print("    <filename>: Local filename to save the downloaded links")
+    #     print("    <new_remark>: The new remark to set")
+    #     sys.exit(1)
 
-    url = sys.argv[1]
-    filename = sys.argv[2]
-    new_remark = sys.argv[3]
+    # url = sys.argv[1]
+    # filename = sys.argv[2]
+    # new_remark = sys.argv[3]
+
+    url = "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/refs/heads/master/sub/splitted/vmess.txt"
+    filename = "auto.txt"
+    new_remark = "2GTeam"
 
     download_file(url, filename)
     modify_vmess_links(filename, new_remark)
