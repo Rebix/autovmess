@@ -2,7 +2,7 @@ name: Modify VMess Links
 
 on:
   schedule:
-    - cron: "* * * * *" # Runs every 30 minutes
+    - cron: "* * * * *"
 
 jobs:
   modify_links:
